@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-4" *ngFor="let data of items">
+              <div class="card mt-2">
+                <img class="card-img-top" src={{data.image}} alt="Card image">
+                <div class="card-body">
+                  <h6 class="card-danger "><h4 class="text-danger h6">{{data.name}}</h4></h6>
+                  <span class="card-text">{{data.decs}}</span>
+                  <h6 class="text-dark">Price:{{data.price}}</h6>
+                  <button (click)="onSelect(data);" class="btn btn-primary btn-sm">Add  to Cart</button>
+                </div>
+            </div>  
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+            <div class="card" style="width: 16rem;">
+              <div *ngIf="isErrorMsg" class="card-header">
+              <span  class="text-danger">{{msg1}}</span>
+              </div>
+                <div class="card-header">
+                  Your Cart
+                </div>
+                
+                <div  *ngIf="myCart.length != 0 ; else elseBlock">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" *ngFor="let item of myCart">
+                    <button *ngIf="item.count > 1" class="btn btn-sm btn-primary" (click)="countDecrease(item);" >-</button><span class="text-danger">&nbsp;{{item.name}}&nbsp;{{item.count}}</span><button class="btn btn-sm btn-primary" (click)="countIncrease(item);" >+</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-sm btn-primary" (click)="removeCartItem(item);">x</button><br>
+                    
+                 
+                  </li>
+                  
+                </ul>
+            </div>  
+            <ng-template  #elseBlock> <p class="text-danger">your cart is empty</p></ng-template>
+            </div>
+          </div>
+</div>
+  </div>
+  
